@@ -29,7 +29,9 @@ def option_menu(root, coord_x, coord_y):
     default_text = tk.StringVar(root, value=element_list[0])
 
     option = tk.OptionMenu(root, default_text, *element_list)
-    option.configure(background="grey")
+    option.config(background="grey")
+    option.config(width=4)
+    option.config(borderwidth=10)
 
     default_text.trace("w", lambda *args: element_selection_callback(default_text, option))
     option.place(x=coord_x, y=coord_y)
@@ -42,22 +44,62 @@ def getorigin(eventorigin):
     print(x, y)
 
 
-def get_background(root):
-    background = Image.open("./img/school/first_floor_crop.png")
+def get_background(root, image_url):
+    background = Image.open(image_url)
     background = ImageTk.PhotoImage(background)
     panel = tk.Label(root, image = background)
     panel.image = background
-    panel.grid(row = 2)
-
+    panel.pack(side=tk.LEFT)
 
 
 
 root = tk.Tk()
+
+# Setting
+
+width = 1440 # 720
+height = 900
+first_floor_url = "./img/school/first_floor_resized.jpeg"
+second_floor_url = "./img/school/second_floor_resized.jpeg"
+
+first_floor_seal_locations = [
+    (118, 345),
+    (138, 588),
+    (409, 583),
+    (529, 604),
+    (598, 703),
+    (550, 352),
+    (440, 316),
+    (80, 138),
+    (361, 73),
+]
+
+second_floor_seal_locations = [
+    (40, 72),
+    (43, 312),
+    (257, 236),
+    (483, 342),
+    (138, 634),
+    (411, 610),
+    (606, 601),
+    (548, 738)
+]
+
+# Calls
+
+root.geometry(f"{width}x{height}")
+
 root.bind("<Button 1>", getorigin)
 
-get_background(root)
-option_menu(root, 20, 40)
+get_background(root, first_floor_url)
+get_background(root, second_floor_url)
 
+for locations in first_floor_seal_locations:
+    option_menu(root, *locations)
 
+for x_coord, y_coord in second_floor_seal_locations:
+    x = width // 2 + x_coord
+    y = y_coord
+    option_menu(root, x, y)
 
 root.mainloop()
