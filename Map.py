@@ -29,4 +29,6 @@ class Map:
             y = y_coord + self.second_map_data.y_delta
             self.util.create_option_menu(root, x, y)
 
+        self.util.create_reset_button(root)
+
         root.mainloop()
