@@ -26,7 +26,8 @@ second_floor_seal_locations = [
     (138, 634),
     (411, 610),
     (606, 601),
-    (548, 738)
+    (548, 738),
+    (319, 156)
 ]
 
 first_map_data = MapData(first_floor_url, first_map_y_delta, first_floor_seal_locations)
