@@ -1,7 +1,6 @@
 import tkinter as tk
 
 from controller.controller import Controller
-from frames.school_b_map import SchoolB
 
 
 class App(tk.Tk):
@@ -18,4 +17,6 @@ class App(tk.Tk):
         self._frame = new_frame
         self._frame.grid(row=0, column=0)
 
-App().mainloop()
+
+if __name__ == "__main__":
+    App().mainloop()
