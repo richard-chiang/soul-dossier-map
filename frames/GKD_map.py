@@ -37,9 +37,6 @@ class GKD:
     def map_data(self):
         return MapData(self.map_url(), seal_locations = self.seal_locations())
 
-    def draw(self):
+    def draw(self, root):
         map_display = Map(self.map_data())
-        map_display.draw()
-
-
-GKD().draw()
+        return map_display.drawFrame(root)

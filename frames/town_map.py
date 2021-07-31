@@ -42,9 +42,6 @@ class Town:
     def second_map(self):
         return MapData(self.second_floor_url(), self.second_floor_seal_locations())
 
-    def draw(self):
+    def draw(self, root):
         map_display = Map(self.first_map(), self.second_map())
-        map_display.draw()
-
-
-Town().draw()
+        return map_display.drawFrame(root)

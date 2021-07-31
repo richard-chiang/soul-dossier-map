@@ -11,24 +11,24 @@ class Map:
         self.second_map_data = second_map_data
         self.util = Util()
 
-    def draw(self):
-        root = tk.Tk()
-        root.geometry(f"{self.width}x{self.height}")
-        root.bind("<Button 1>", self.util.getorigin)
+    def drawFrame(self, root):
+        frame = tk.Frame(root)
+        # frame.geometry(f"{self.width}x{self.height}")
+        # frame.bind("<Button 1>", self.util.getorigin)
 
-        self.util.get_background(root, self.first_map_data.map_url)
+        self.util.get_background(frame, self.first_map_data.map_url)
 
         for x_coord, y_coord in self.first_map_data.seal_locations:
             x = x_coord
             y = y_coord
-            self.util.create_option_menu(root, x, y)
+            self.util.create_option_menu(frame, x, y)
 
         if self.second_map_data is not None:
-            self.util.get_background(root, self.second_map_data.map_url)
+            self.util.get_background(frame, self.second_map_data.map_url)
 
             for x_coord, y_coord in self.second_map_data.seal_locations:
                 x = self.width // 2 + x_coord
                 y = y_coord
-                self.util.create_option_menu(root, x, y)
+                self.util.create_option_menu(frame, x, y)
 
-        root.mainloop()
+        return frame

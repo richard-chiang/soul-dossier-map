@@ -1,16 +1,16 @@
-from MapBluePrint.IMapBluePrint import IMapBluePrint
+import tk as tk
+
+from MapData import MapData
+from MapDrawer import Map
 
 
-class SchoolBBluePrint(IMapBluePrint):
+class SchoolB():
 
     def first_floor_url(self):
         return "./img/school_b/first_floor.png"
 
     def second_floor_url(self):
         return "./img/school_b/second_floor.png"
-
-    def y_delta(self):
-        return 185
 
     def first_floor_seal_locations(self):
         return [
@@ -20,7 +20,6 @@ class SchoolBBluePrint(IMapBluePrint):
             (344, 240),
             (167, 400),
             (319, 386),
-            (117, 266),
             (108, 268)
         ]
 
@@ -32,5 +31,16 @@ class SchoolBBluePrint(IMapBluePrint):
             (281, 271),
             (215, 339),
             (374, 385),
-            (113, 59)
+            (113, 59),
+            (433, 293)
         ]
+
+    def first_map(self):
+        return MapData(self.first_floor_url(), self.first_floor_seal_locations())
+
+    def second_map(self):
+        return MapData(self.second_floor_url(), self.second_floor_seal_locations())
+
+    def draw(self, parent):
+        map_display = Map(self.first_map(), self.second_map())
+        return map_display.drawFrame(parent)

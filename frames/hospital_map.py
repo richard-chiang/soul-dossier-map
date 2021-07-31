@@ -40,9 +40,6 @@ class Hospital:
     def map(self):
         return MapData(self.map_url(), self.seal_locations())
 
-    def draw(self):
+    def draw(self, root):
         map_display = Map(self.map())
-        map_display.draw()
-
-
-Hospital().draw()
+        return map_display.drawFrame(root)
