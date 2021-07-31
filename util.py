@@ -63,17 +63,9 @@ class Util:
         background = ImageTk.PhotoImage(background)
         panel = tk.Label(root, image = background)
         panel.image = background
-        panel.pack(side=tk.LEFT)
+        panel.pack(side=tk.LEFT, anchor="nw")
 
     def set_leftover_to_none(self):
         for text in self.selected_element_list:
             if text.get() == "unselected":
                 text.set("none")
-
-    def create_reset_button(self, root):
-        btn = tk.Button(root, text="Reset", command=self.reset)
-        btn.place(x=0, y=0)
-
-    def reset(self):
-        for text in self.selected_element_list:
-            text.set("unselected")
